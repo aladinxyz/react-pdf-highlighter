@@ -47,10 +47,10 @@ const HighlightPopup = ({
 const PRIMARY_PDF_URL = "https://arxiv.org/pdf/1708.08021";
 const SECONDARY_PDF_URL = "https://arxiv.org/pdf/1604.02480";
 
-const searchParams = new URLSearchParams(document.location.search);
-const initialUrl = searchParams.get("url") || PRIMARY_PDF_URL;
-
 export function App() {
+  const searchParams = new URLSearchParams(document.location.search);
+  const initialUrl = searchParams.get("url") || PRIMARY_PDF_URL;
+
   const [url, setUrl] = useState(initialUrl);
   const [highlights, setHighlights] = useState<Array<IHighlight>>(
     testHighlights[initialUrl] ? [...testHighlights[initialUrl]] : [],
@@ -67,9 +67,7 @@ export function App() {
     setHighlights(testHighlights[newUrl] ? [...testHighlights[newUrl]] : []);
   };
 
-  const scrollViewerTo = useRef((highlight: IHighlight) => {
-    // Implement scrolling logic here
-  });
+  const scrollViewerTo = useRef((highlight: IHighlight) => {});
 
   const scrollToHighlightFromHash = useCallback(() => {
     const highlight = getHighlightById(parseIdFromHash());
